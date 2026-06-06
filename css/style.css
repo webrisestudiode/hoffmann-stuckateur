@@ -229,8 +229,9 @@ p {
 }
 
 .btn-sm {
-  padding: 0.6rem 1.5rem;
-  font-size: 0.85rem;
+  padding: 0.65rem 1.75rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
 }
 
 /* ============================================
