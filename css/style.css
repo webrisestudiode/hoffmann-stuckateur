@@ -1850,3 +1850,49 @@ select.form-control {
   padding-bottom: 0.5rem;
   border-bottom: 1px solid rgba(196,165,90,0.2);
 }
+
+/* ── Mobile fixes 390px ─────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* Hero: kein Mindest-Vollbild auf Mobile */
+  .hero {
+    min-height: auto !important;
+  }
+  .hero-image-full {
+    max-height: 45vw !important;
+    min-height: 180px;
+  }
+  /* Alle Inline-2-Spalten-Grids stapeln */
+  [style*="grid-template-columns:1fr 1fr"],
+  [style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  /* Kontakt 2-Spalten-Layout */
+  [style*="grid-template-columns:1fr 1.4fr"],
+  [style*="grid-template-columns: 1fr 1.4fr"],
+  [style*="grid-template-columns:1.2fr 1fr"],
+  [style*="grid-template-columns: 1.2fr 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  /* Bilder-Höhen reduzieren */
+  [style*="height:500px"] {
+    height: auto !important;
+    max-height: 260px;
+    object-fit: cover;
+    width: 100%;
+  }
+  [style*="height:440px"] {
+    height: 220px !important;
+  }
+  [style*="height:400px"] {
+    height: 220px !important;
+  }
+  /* Abstände in gestapelten Sektionen */
+  [style*="gap:4rem"] {
+    gap: 1.5rem !important;
+  }
+  [style*="gap: 4rem"] {
+    gap: 1.5rem !important;
+  }
+}
