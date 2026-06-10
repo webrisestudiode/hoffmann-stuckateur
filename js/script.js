@@ -37,32 +37,40 @@ document.addEventListener('DOMContentLoaded', function () {
   const toggler = document.getElementById('navToggler');
   const collapse = document.getElementById('navCollapse');
 
+  // Overlay erstellen
+  const navOverlay = document.createElement('div');
+  navOverlay.className = 'nav-overlay';
+  document.body.appendChild(navOverlay);
+
+  function closeNav() {
+    collapse.classList.remove('open');
+    navOverlay.classList.remove('active');
+    const icon = toggler.querySelector('i');
+    if (icon) { icon.classList.add('fa-bars'); icon.classList.remove('fa-xmark'); }
+  }
+
   if (toggler && collapse) {
     toggler.addEventListener('click', function () {
-      collapse.classList.toggle('open');
+      const isOpen = collapse.classList.toggle('open');
+      navOverlay.classList.toggle('active', isOpen);
       const icon = toggler.querySelector('i');
       if (icon) {
-        icon.classList.toggle('fa-bars');
-        icon.classList.toggle('fa-xmark');
+        icon.classList.toggle('fa-bars', !isOpen);
+        icon.classList.toggle('fa-xmark', isOpen);
       }
     });
 
-    // Close on link click
     collapse.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        collapse.classList.remove('open');
-        const icon = toggler.querySelector('i');
-        if (icon) {
-          icon.classList.add('fa-bars');
-          icon.classList.remove('fa-xmark');
-        }
-      });
+      link.addEventListener('click', closeNav);
     });
+
+    navOverlay.addEventListener('click', closeNav);
 
     // Close on outside click
     document.addEventListener('click', function (e) {
       if (!navbar.contains(e.target)) {
         collapse.classList.remove('open');
+        navOverlay.classList.remove('active');
         const icon = toggler.querySelector('i');
         if (icon) {
           icon.classList.add('fa-bars');

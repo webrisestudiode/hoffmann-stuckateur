@@ -1853,46 +1853,78 @@ select.form-control {
 
 /* ── Mobile fixes 390px ─────────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  /* Hero: kein Mindest-Vollbild auf Mobile */
-  .hero {
-    min-height: auto !important;
+  body { overflow-x: hidden; }
+
+  /* Hero */
+  .hero { min-height: auto !important; }
+  .hero-image-full { max-height: 45vw !important; min-height: 180px; }
+
+  /* Nav: volle Breite, kein Abschneiden */
+  .navbar-collapse {
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box;
   }
-  .hero-image-full {
-    max-height: 45vw !important;
-    min-height: 180px;
+  .nav-link {
+    white-space: normal !important;
+    word-break: break-word;
   }
-  /* Alle Inline-2-Spalten-Grids stapeln */
+
+  /* Nav Overlay */
+  .nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 89;
+  }
+  .nav-overlay.active { display: block; }
+
+  /* Team / Karriere / Über uns: 3 → 1 Spalte */
+  .team-grid { grid-template-columns: 1fr !important; max-width: 100%; }
+  .testimonials-grid { grid-template-columns: 1fr !important; }
+  .projects-grid { grid-template-columns: 1fr !important; }
+
+  /* Inline repeat(3,1fr) und repeat(4,1fr) → 1 Spalte */
+  [style*="grid-template-columns:repeat(3,1fr)"],
+  [style*="grid-template-columns: repeat(3,1fr)"],
+  [style*="grid-template-columns:repeat(3, 1fr)"],
+  [style*="grid-template-columns: repeat(3, 1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+  [style*="grid-template-columns:repeat(4,1fr)"],
+  [style*="grid-template-columns: repeat(4,1fr)"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* karriere-grid stapeln */
+  .karriere-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
+
+  /* Services & Stats */
+  .services-grid { grid-template-columns: 1fr !important; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+
+  /* Inline-2-Spalten-Grids stapeln */
   [style*="grid-template-columns:1fr 1fr"],
   [style*="grid-template-columns: 1fr 1fr"] {
     grid-template-columns: 1fr !important;
     gap: 1.5rem !important;
   }
-  /* Kontakt 2-Spalten-Layout */
   [style*="grid-template-columns:1fr 1.4fr"],
-  [style*="grid-template-columns: 1fr 1.4fr"],
   [style*="grid-template-columns:1.2fr 1fr"],
-  [style*="grid-template-columns: 1.2fr 1fr"] {
+  [style*="grid-template-columns:1fr 1.5fr"] {
     grid-template-columns: 1fr !important;
     gap: 1.5rem !important;
   }
-  /* Bilder-Höhen reduzieren */
-  [style*="height:500px"] {
-    height: auto !important;
-    max-height: 260px;
-    object-fit: cover;
-    width: 100%;
-  }
-  [style*="height:440px"] {
-    height: 220px !important;
-  }
-  [style*="height:400px"] {
-    height: 220px !important;
-  }
-  /* Abstände in gestapelten Sektionen */
-  [style*="gap:4rem"] {
-    gap: 1.5rem !important;
-  }
-  [style*="gap: 4rem"] {
-    gap: 1.5rem !important;
-  }
+  /* Bilder-Höhen */
+  [style*="height:500px"] { height: auto !important; max-height: 260px; width: 100%; }
+  [style*="height:440px"] { height: 220px !important; }
+  [style*="height:400px"] { height: 220px !important; }
+  [style*="gap:4rem"] { gap: 1.5rem !important; }
+  [style*="gap: 4rem"] { gap: 1.5rem !important; }
+
+  /* Buttons */
+  .btn { min-height: 44px; }
+  .form-group input, .form-group textarea, .form-group select { min-height: 44px; }
 }
