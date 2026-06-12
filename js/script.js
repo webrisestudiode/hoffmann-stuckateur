@@ -55,8 +55,8 @@ document.addEventListener('DOMContentLoaded', function () {
       navOverlay.classList.toggle('active', isOpen);
       const icon = toggler.querySelector('i');
       if (icon) {
-        icon.classList.toggle('fa-bars', !isOpen);
-        icon.classList.toggle('fa-xmark', isOpen);
+        icon.classList.add('fa-bars');
+        icon.classList.remove('fa-xmark');
       }
     });
 

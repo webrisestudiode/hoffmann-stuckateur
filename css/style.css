@@ -1,4 +1,4 @@
-html { overflow-x: hidden; }
+html { overflow-x: clip; }
 /* ============================================
    Hoffmann Stuckateur & Putzarbeiten
    Classical Elegant Design - Cream & Gold
@@ -1733,6 +1733,26 @@ select.form-control {
   .hero-image-full {
     max-height: 40vh;
   }
+  /* Nav Overlay – dunkler Hintergrund */
+  .nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 998;
+  }
+  .nav-overlay.active { display: block; }
+  /* Alle Buttons volle Breite */
+  .btn { width: 100% !important; justify-content: center !important; }
+  .cta-buttons .btn { width: auto !important; } /* CTA-Buttons ausgenommen */
+  /* Formulare volle Breite */
+  .form-control, .form-row { width: 100% !important; }
+  .form-row { grid-template-columns: 1fr !important; }
+  /* Footer links sichtbar */
+  .footer-links a { color: rgba(255,255,255,0.8) !important; display: block; }
+  .footer-links li { display: block; margin-bottom: 6px; }
+  /* Body kein horizontal scroll */
+  body { overflow-x: hidden; }
 }
 
 @media (max-width: 480px) {
